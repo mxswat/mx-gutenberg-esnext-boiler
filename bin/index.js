@@ -75,7 +75,6 @@ const main = async () => {
                 /PluginNameBeauty/g,
                 /plugin-name-internal/g,
                 /plugin-prefix/g,
-                /__pluginPrefixInternal__/g,
                 /__registerBlockFunctionName__/g
             ],
             to: [
@@ -86,6 +85,10 @@ const main = async () => {
             ],
         });
         console.log('Replacement success');
+        console.log('pluginName', pluginName)
+        console.log('pluginNameInternal', pluginNameInternal)
+        console.log('pluginPrefixInternal', pluginPrefixInternal)
+        console.log('registerBlockFunctionName', registerBlockFunctionName)
         rl.close();
     }
     catch (error) {

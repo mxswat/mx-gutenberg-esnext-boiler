@@ -14,9 +14,22 @@ const rl = readline.createInterface({
     output: process.stdout
 })
 
+let pluginName = '';
+let pluginNameInternal = '';
+
+let pluginPrefix = '';
+let pluginPrefixInternal = '';
+
+/** Convert something like: Example 03 editable esnext to example-03-editable-esnext */
+const sanitizeForWPp = (str) => {
+    return str.replace(/\s+/g, '-').toLowerCase();
+}
+
 const getPluginName = () => {
     return new Promise((resolve, reject) => {
         rl.question('Plugin name 📋 :', (answer) => {
+            pluginName = sanitizeForWPp(answer);
+            pluginNameInternal = answer;
             resolve()
         })
     })
@@ -25,6 +38,8 @@ const getPluginName = () => {
 const question2 = () => {
     return new Promise((resolve, reject) => {
         rl.question('Plugin prefix 📋 :', (answer) => {
+            pluginPrefix = sanitizeForWPp(answer);
+            pluginPrefixInternal = answer;
             resolve()
         })
     })

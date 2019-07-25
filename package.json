@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "license": "MIT",
     "bin": {
-        "mx-guten-builder": "./bin/builder.js"
+        "mx-guten": "./bin/index.js"
     },
     "dependencies": {
 

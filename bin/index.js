@@ -7,6 +7,7 @@ console.log('Welcome to Mx\'s gutenberg builder');
 
 const readline = require('readline')
 const fsExtra = require('fs-extra');
+const replace = require('replace-in-file');
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -51,21 +52,36 @@ const main = async () => {
     // test in
     const builderDirectory = __dirname.replace('bin', '');
     const resourcesDirectory = builderDirectory + 'resources';
-    console.log(process.cwd());
     console.log(`Moving files from ${resourcesDirectory}`);
 
-    await getPluginName()
-    await question2()
-    const newFolderName = `${pluginPrefix}-${pluginNameInternal}`;
-    fsExtra.mkdirSync(`${process.cwd()}/${newFolderName}`);
+    await getPluginName();
+    await question2();
+
+    async function copyFiles() {
+        try {
+            await fsExtra.copy(resourcesDirectory, process.cwd() + `${pluginPrefixInternal}-${pluginNameInternal}`);
+            console.log('Copied files')
+        } catch (err) {
+            console.error(err)
+        }
+    }
+
+    await copyFiles()
+    console.log('after copy')
+    // const results = replace.sync({
+    //     files: 'path/to/files/*.html',
+    //     from: /foo/g,
+    //     to: 'bar',
+    // });
 
     registerBlockFunctionName = (pluginNameInternal + '_' + pluginPrefixInternal).replace(/-+/g, '_');
-    rl.close()
-    console.log(pluginName);
-    console.log(pluginNameInternal);
-    console.log(pluginPrefix);
-    console.log(pluginPrefixInternal);
-    console.log(registerBlockFunctionName);
+    rl.close();
+
+    // console.log(pluginName);
+    // console.log(pluginNameInternal);
+    // console.log(pluginPrefix);
+    // console.log(pluginPrefixInternal);
+    // console.log(registerBlockFunctionName);
 }
 
 main()

@@ -42,8 +42,8 @@
         o = a.__,
         c = (a.setLocaleData, wp.blocks.registerBlockType),
         u = wp.editor.RichText;
-    c("gutenberg-examples/__pluginNameInternal__", {
-        title: o("__pluginName__", "gutenberg-examples"),
+    c("__pluginPrefixInternal__/__pluginNameInternal__", {
+        title: o("__pluginName__", "__pluginPrefixInternal__"),
         icon: "universal-access-alt",
         category: "layout",
         attributes: {

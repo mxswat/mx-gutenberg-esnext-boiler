@@ -2,7 +2,7 @@ const { __, setLocaleData } = wp.i18n;
 const { registerBlockType } = wp.blocks;
 const { RichText } = wp.editor;
 
-registerBlockType( 'gutenberg-examples/__pluginNameInternal__', {
+registerBlockType( '__pluginPrefixInternal__/__pluginNameInternal__', {
 	title: __( '__pluginName__'),
 	icon: 'universal-access-alt',
 	category: 'layout',

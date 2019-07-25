@@ -59,7 +59,7 @@ const main = async () => {
 
     async function copyFiles() {
         try {
-            await fsExtra.copy(resourcesDirectory, process.cwd() + `${pluginPrefixInternal}-${pluginNameInternal}`);
+            await fsExtra.copy(resourcesDirectory, process.cwd() + `/${pluginPrefixInternal}-${pluginNameInternal}`);
             console.log('Copied files')
         } catch (err) {
             console.error(err)
@@ -67,12 +67,26 @@ const main = async () => {
     }
 
     await copyFiles()
-    console.log('after copy')
-    // const results = replace.sync({
-    //     files: 'path/to/files/*.html',
-    //     from: /foo/g,
-    //     to: 'bar',
-    // });
+
+    const results = replace.sync({
+        files: process.cwd() + `/${pluginPrefixInternal}-${pluginNameInternal}/*`,
+        from: [
+            /__pluginName__/g,
+            /__pluginNameInternal__/g,
+            /__pluginPrefix__/g,
+            /__pluginPrefixInternal__/g,
+            /__registerBlockFunctionName__/g
+        ],
+        to: [
+            pluginName,
+            pluginNameInternal,
+            pluginPrefix,
+            pluginPrefixInternal,
+            registerBlockFunctionName
+        ],
+    });
+
+    console.log(results)
 
     registerBlockFunctionName = (pluginNameInternal + '_' + pluginPrefixInternal).replace(/-+/g, '_');
     rl.close();

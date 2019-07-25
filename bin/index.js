@@ -60,7 +60,7 @@ const main = async () => {
     async function copyFiles() {
         try {
             await fsExtra.copy(resourcesDirectory, process.cwd() + `/${pluginPrefixInternal}-${pluginNameInternal}`);
-            console.log('Copied files')
+            console.log('✅ Copied files');
         } catch (err) {
             console.error(err)
         }
@@ -84,11 +84,10 @@ const main = async () => {
                 registerBlockFunctionName
             ],
         });
-        console.log('Replacement success');
-        console.log('pluginName', pluginName)
-        console.log('pluginNameInternal', pluginNameInternal)
-        console.log('pluginPrefixInternal', pluginPrefixInternal)
-        console.log('registerBlockFunctionName', registerBlockFunctionName)
+        console.log('✅ Replacement success');
+        console.log('✅ Plugin name', pluginName)
+        console.log('✅ Plugin nameInternal', pluginNameInternal)
+        console.log('✅ Plugin PrefixInternal', pluginPrefixInternal)
         rl.close();
     }
     catch (error) {

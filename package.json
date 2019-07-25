@@ -1,0 +1,11 @@
+{
+    "name": "mx-gutenberg-esnext-boiler",
+    "version": "1.0.0",
+    "license": "MIT",
+    "bin": {
+        "mx-guten-builder": "./bin/builder.js"
+    },
+    "dependencies": {
+
+    }
+}

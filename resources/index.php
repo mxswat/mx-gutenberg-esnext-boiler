@@ -40,7 +40,7 @@ function gutenberg_examples_03_esnext_register_block() {
 	);
 
 	wp_register_style(
-		'__pluginPrefixInternal__-__pluginNameInternal__',
+		'__pluginPrefixInternal__-__pluginNameInternal__-style',
 		plugins_url( 'style.css', __FILE__ ),
 		array( ),
 		filemtime( plugin_dir_path( __FILE__ ) . 'style.css' )
@@ -49,7 +49,7 @@ function gutenberg_examples_03_esnext_register_block() {
 	register_block_type( '__pluginPrefixInternal__/__pluginNameInternal__', array(
 		'style' => '__pluginPrefixInternal__-__pluginNameInternal__',
 		'editor_style' => '__pluginPrefixInternal__-__pluginNameInternal__-editor',
-		'editor_script' => '__pluginPrefixInternal__-__pluginNameInternal__',
+		'editor_script' => '__pluginPrefixInternal__-__pluginNameInternal__-style',
 	) );
 
 }

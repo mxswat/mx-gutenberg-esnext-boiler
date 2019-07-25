@@ -18,7 +18,7 @@ defined( 'ABSPATH' ) || exit;
  *
  * Passes translations to JavaScript.
  */
-function gutenberg_examples_03_esnext_register_block() {
+function __registerBlockFunctionName___register_block() {
 
 	if ( ! function_exists( 'register_block_type' ) ) {
 		// Gutenberg is not active.
@@ -53,4 +53,4 @@ function gutenberg_examples_03_esnext_register_block() {
 	) );
 
 }
-add_action( 'init', 'gutenberg_examples_03_esnext_register_block' );
+add_action( 'init', '__registerBlockFunctionName___register_block' );

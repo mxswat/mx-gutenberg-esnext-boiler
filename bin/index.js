@@ -20,17 +20,19 @@ let pluginNameInternal = ''; // into the files matches with "__pluginNameInterna
 let pluginPrefix = '';
 let pluginPrefixInternal = '';
 
+let registerBlockFunctionName = '';
+
 /** Convert something like: Example 03 editable esnext to example-03-editable-esnext */
 const sanitizeForInternal = (str) => {
-    let sanitized = str.replace(/[^a-z0-9áéíóúñü \.,_-]/gim,"");
+    let sanitized = str.replace(/[^a-z0-9áéíóúñü \.,_-]/gim, "");
     return sanitized.replace(/\s+/g, '-').toLowerCase();
 }
 
 const getPluginName = () => {
     return new Promise((resolve, reject) => {
         rl.question('Plugin name 📋 :', (answer) => {
-            pluginName = sanitizeForInternal(answer);
-            pluginNameInternal = answer;
+            pluginNameInternal = sanitizeForInternal(answer);
+            pluginName = answer;
             resolve()
         })
     })
@@ -39,8 +41,8 @@ const getPluginName = () => {
 const question2 = () => {
     return new Promise((resolve, reject) => {
         rl.question('Plugin prefix 📋 :', (answer) => {
-            pluginPrefix = sanitizeForInternal(answer);
-            pluginPrefixInternal = answer;
+            pluginPrefixInternal = sanitizeForInternal(answer);
+            pluginPrefix = answer;
             resolve()
         })
     })
@@ -49,11 +51,13 @@ const question2 = () => {
 const main = async () => {
     await getPluginName()
     await question2()
+    registerBlockFunctionName = (pluginNameInternal + '_' + pluginPrefixInternal).replace(/-+/g, '_');
     rl.close()
     console.log(pluginName);
     console.log(pluginNameInternal);
     console.log(pluginPrefix);
     console.log(pluginPrefixInternal);
+    console.log(registerBlockFunctionName);
 }
 
 // process.cwd()

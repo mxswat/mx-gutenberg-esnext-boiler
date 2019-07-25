@@ -3,11 +3,10 @@
 
 // #!/usr/bin/env <= It's called a shebang. It basically tells the system this isn't a shell script and it should use a different interpreter.
 
-// Load the files for the boiler plate => var lib  = path.join(path.dirname(fs.realpathSync(__filename)), '../lib');
-
 console.log('Welcome to Mx\'s gutenberg builder');
 
 const readline = require('readline')
+const fsExtra = require('fs-extra');
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -49,8 +48,17 @@ const question2 = () => {
 }
 
 const main = async () => {
+    // test in
+    const builderDirectory = __dirname.replace('bin', '');
+    const resourcesDirectory = builderDirectory + 'resources';
+    console.log(process.cwd());
+    console.log(`Moving files from ${resourcesDirectory}`);
+
     await getPluginName()
     await question2()
+    const newFolderName = `${pluginPrefix}-${pluginNameInternal}`;
+    fsExtra.mkdirSync(`${process.cwd()}/${newFolderName}`);
+
     registerBlockFunctionName = (pluginNameInternal + '_' + pluginPrefixInternal).replace(/-+/g, '_');
     rl.close()
     console.log(pluginName);
@@ -60,6 +68,4 @@ const main = async () => {
     console.log(registerBlockFunctionName);
 }
 
-// process.cwd()
-// __dirname
 main()

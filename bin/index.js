@@ -20,8 +20,6 @@ let pluginNameInternal = ''; // into the files matches with "__pluginNameInterna
 let pluginPrefix = '';
 let pluginPrefixInternal = '';
 
-let registerBlockFunctionName = '';
-
 /** Convert something like: Example 03 editable esnext to example-03-editable-esnext */
 const sanitizeForInternal = (str) => {
     let sanitized = str.replace(/[^a-z0-9áéíóúñü \.,_-]/gim, "");
@@ -57,6 +55,8 @@ const main = async () => {
     await getPluginName();
     await question2();
 
+    const registerBlockFunctionName = (pluginNameInternal + '_' + pluginPrefixInternal).replace(/-+/g, '_');
+
     async function copyFiles() {
         try {
             await fsExtra.copy(resourcesDirectory, process.cwd() + `/${pluginPrefixInternal}-${pluginNameInternal}`);
@@ -68,34 +68,31 @@ const main = async () => {
 
     await copyFiles()
 
-    const results = replace.sync({
-        files: process.cwd() + `/${pluginPrefixInternal}-${pluginNameInternal}/*`,
-        from: [
-            /__pluginName__/g,
-            /__pluginNameInternal__/g,
-            /__pluginPrefix__/g,
-            /__pluginPrefixInternal__/g,
-            /__registerBlockFunctionName__/g
-        ],
-        to: [
-            pluginName,
-            pluginNameInternal,
-            pluginPrefix,
-            pluginPrefixInternal,
-            registerBlockFunctionName
-        ],
-    });
-
-    console.log(results)
-
-    registerBlockFunctionName = (pluginNameInternal + '_' + pluginPrefixInternal).replace(/-+/g, '_');
-    rl.close();
-
-    // console.log(pluginName);
-    // console.log(pluginNameInternal);
-    // console.log(pluginPrefix);
-    // console.log(pluginPrefixInternal);
-    // console.log(registerBlockFunctionName);
+    try {
+        const results = replace.sync({
+            files: process.cwd() + `/${pluginPrefixInternal}-${pluginNameInternal}/**/*`,
+            from: [
+                /__pluginName__/g,
+                /__pluginNameInternal__/g,
+                /__pluginPrefix__/g,
+                /__pluginPrefixInternal__/g,
+                /__registerBlockFunctionName__/g
+            ],
+            to: [
+                pluginName,
+                pluginNameInternal,
+                pluginPrefix,
+                pluginPrefixInternal,
+                registerBlockFunctionName
+            ],
+        });
+        console.log('Replacement success');
+        rl.close();
+    }
+    catch (error) {
+        console.error('Error occurred:', error);
+        rl.close();
+    }
 }
 
 main()

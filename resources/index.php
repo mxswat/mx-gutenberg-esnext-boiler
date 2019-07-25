@@ -26,30 +26,30 @@ function gutenberg_examples_03_esnext_register_block() {
 	}
 
 	wp_register_script(
-		'__pluginPrefixInternal__-03-esnext',
+		'__pluginPrefixInternal__-__pluginNameInternal__',
 		plugins_url( 'build/index.js', __FILE__ ),
 		array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor' ),
 		filemtime( plugin_dir_path( __FILE__ ) . 'build/index.js' )
 	);
 
 	wp_register_style(
-		'__pluginPrefixInternal__-03-esnext-editor',
+		'__pluginPrefixInternal__-__pluginNameInternal__-editor',
 		plugins_url( 'editor.css', __FILE__ ),
 		array( 'wp-edit-blocks' ),
 		filemtime( plugin_dir_path( __FILE__ ) . 'editor.css' )
 	);
 
 	wp_register_style(
-		'__pluginPrefixInternal__-03-esnext',
+		'__pluginPrefixInternal__-__pluginNameInternal__',
 		plugins_url( 'style.css', __FILE__ ),
 		array( ),
 		filemtime( plugin_dir_path( __FILE__ ) . 'style.css' )
 	);
 
 	register_block_type( '__pluginPrefixInternal__/__pluginNameInternal__', array(
-		'style' => '__pluginPrefixInternal__-03-esnext',
-		'editor_style' => '__pluginPrefixInternal__-03-esnext-editor',
-		'editor_script' => '__pluginPrefixInternal__-03-esnext',
+		'style' => '__pluginPrefixInternal__-__pluginNameInternal__',
+		'editor_style' => '__pluginPrefixInternal__-__pluginNameInternal__-editor',
+		'editor_script' => '__pluginPrefixInternal__-__pluginNameInternal__',
 	) );
 
 }

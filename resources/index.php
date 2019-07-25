@@ -52,14 +52,5 @@ function gutenberg_examples_03_esnext_register_block() {
 		'editor_script' => '__pluginPrefixInternal__-03-esnext',
 	) );
 
-  if ( function_exists( 'wp_set_script_translations' ) ) {
-    /**
-     * May be extended to wp_set_script_translations( 'my-handle', 'my-domain',
-     * plugin_dir_path( MY_PLUGIN ) . 'languages' ) ). For details see
-     * https://make.wordpress.org/core/2018/11/09/new-javascript-i18n-support-in-wordpress/
-     */
-    wp_set_script_translations( '__pluginPrefixInternal__-03-esnext', '__pluginPrefixInternal__' );
-  }
-
 }
 add_action( 'init', 'gutenberg_examples_03_esnext_register_block' );

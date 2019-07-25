@@ -21,14 +21,15 @@ let pluginPrefix = '';
 let pluginPrefixInternal = '';
 
 /** Convert something like: Example 03 editable esnext to example-03-editable-esnext */
-const sanitizeForWPp = (str) => {
-    return str.replace(/\s+/g, '-').toLowerCase();
+const sanitizeForInternal = (str) => {
+    let sanitized = str.replace(/[^a-z0-9áéíóúñü \.,_-]/gim,"");
+    return sanitized.replace(/\s+/g, '-').toLowerCase();
 }
 
 const getPluginName = () => {
     return new Promise((resolve, reject) => {
         rl.question('Plugin name 📋 :', (answer) => {
-            pluginName = sanitizeForWPp(answer);
+            pluginName = sanitizeForInternal(answer);
             pluginNameInternal = answer;
             resolve()
         })
@@ -38,7 +39,7 @@ const getPluginName = () => {
 const question2 = () => {
     return new Promise((resolve, reject) => {
         rl.question('Plugin prefix 📋 :', (answer) => {
-            pluginPrefix = sanitizeForWPp(answer);
+            pluginPrefix = sanitizeForInternal(answer);
             pluginPrefixInternal = answer;
             resolve()
         })
@@ -49,7 +50,10 @@ const main = async () => {
     await getPluginName()
     await question2()
     rl.close()
-    console.log(`Prefix ✅`)
+    console.log(pluginName);
+    console.log(pluginNameInternal);
+    console.log(pluginPrefix);
+    console.log(pluginPrefixInternal);
 }
 
 // process.cwd()

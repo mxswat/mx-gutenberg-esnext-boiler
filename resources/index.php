@@ -1,13 +1,12 @@
 <?php
 
 /**
- * Plugin Name: Gutenberg Examples Editable EsNext
- * Plugin URI: https://github.com/WordPress/gutenberg-examples
- * Description: This is a plugin demonstrating how to register new blocks for the Gutenberg editor.
+ * Plugin Name: PluginNameBeauty
+ * Description: PluginNameBeauty is a breathtaking plugin
  * Version: 1.0.2
- * Author: the Gutenberg Team
+ * Author: You,the best
  *
- * @package gutenberg-examples
+ * @package plugin-prefix
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -15,10 +14,10 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Load all translations for our plugin from the MO file.
 */
-add_action( 'init', 'gutenberg_examples_03_esnext_load_textdomain' );
+add_action( 'init', '__registerBlockFunctionName____load_textdomain' );
 
-function gutenberg_examples_03_esnext_load_textdomain() {
-	load_plugin_textdomain( 'gutenberg-examples', false, basename( __DIR__ ) . '/languages' );
+function __registerBlockFunctionName____load_textdomain() {
+	load_plugin_textdomain( 'plugin-prefix', false, basename( __DIR__ ) . '/languages' );
 }
 
 /**
@@ -27,7 +26,7 @@ function gutenberg_examples_03_esnext_load_textdomain() {
  *
  * Passes translations to JavaScript.
  */
-function gutenberg_examples_03_esnext_register_block() {
+function __registerBlockFunctionName____register_block() {
 
 	if ( ! function_exists( 'register_block_type' ) ) {
 		// Gutenberg is not active.
@@ -35,40 +34,31 @@ function gutenberg_examples_03_esnext_register_block() {
 	}
 
 	wp_register_script(
-		'gutenberg-examples-03-esnext',
+		'plugin-prefix-esnext',
 		plugins_url( 'build/index.js', __FILE__ ),
 		array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor' ),
 		filemtime( plugin_dir_path( __FILE__ ) . 'build/index.js' )
 	);
 
 	wp_register_style(
-		'gutenberg-examples-03-esnext-editor',
+		'plugin-prefix-esnext-editor',
 		plugins_url( 'editor.css', __FILE__ ),
 		array( 'wp-edit-blocks' ),
 		filemtime( plugin_dir_path( __FILE__ ) . 'editor.css' )
 	);
 
 	wp_register_style(
-		'gutenberg-examples-03-esnext',
+		'plugin-prefix-esnext',
 		plugins_url( 'style.css', __FILE__ ),
 		array( ),
 		filemtime( plugin_dir_path( __FILE__ ) . 'style.css' )
 	);
 
-	register_block_type( 'gutenberg-examples/example-03-editable-esnext', array(
-		'style' => 'gutenberg-examples-03-esnext',
-		'editor_style' => 'gutenberg-examples-03-esnext-editor',
-		'editor_script' => 'gutenberg-examples-03-esnext',
+	register_block_type( 'plugin-prefix/plugin-name-internal', array(
+		'style' => 'plugin-prefix-esnext',
+		'editor_style' => 'plugin-prefix-esnext-editor',
+		'editor_script' => 'plugin-prefix-esnext',
 	) );
 
-  if ( function_exists( 'wp_set_script_translations' ) ) {
-    /**
-     * May be extended to wp_set_script_translations( 'my-handle', 'my-domain',
-     * plugin_dir_path( MY_PLUGIN ) . 'languages' ) ). For details see
-     * https://make.wordpress.org/core/2018/11/09/new-javascript-i18n-support-in-wordpress/
-     */
-    wp_set_script_translations( 'gutenberg-examples-03-esnext', 'gutenberg-examples' );
-  }
-
 }
-add_action( 'init', 'gutenberg_examples_03_esnext_register_block' );
+add_action( 'init', '__registerBlockFunctionName____register_block' );

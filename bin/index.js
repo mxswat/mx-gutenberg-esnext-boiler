@@ -72,16 +72,15 @@ const main = async () => {
         const results = replace.sync({
             files: process.cwd() + `/${pluginPrefixInternal}-${pluginNameInternal}/**/*`,
             from: [
-                /__pluginName__/g,
-                /__pluginNameInternal__/g,
-                /__pluginPrefix__/g,
+                /PluginNameBeauty/g,
+                /plugin-name-internal/g,
+                /plugin-prefix/g,
                 /__pluginPrefixInternal__/g,
                 /__registerBlockFunctionName__/g
             ],
             to: [
                 pluginName,
                 pluginNameInternal,
-                pluginPrefix,
                 pluginPrefixInternal,
                 registerBlockFunctionName
             ],

@@ -14,8 +14,8 @@ const rl = readline.createInterface({
     output: process.stdout
 })
 
-let pluginName = '';
-let pluginNameInternal = '';
+let pluginName = ''; // into the files matches with "__pluginName__"
+let pluginNameInternal = ''; // into the files matches with "__pluginNameInternal__"
 
 let pluginPrefix = '';
 let pluginPrefixInternal = '';

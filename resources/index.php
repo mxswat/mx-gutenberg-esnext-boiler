@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Plugin Name: Gutenberg Examples Editable EsNext
- * Plugin URI: https://github.com/WordPress/gutenberg-examples
- * Description: This is a plugin demonstrating how to register new blocks for the Gutenberg editor.
- * Version: 1.0.2
- * Author: the Gutenberg Team
+ * Plugin Name: __pluginName__
+ * Plugin URI: DIY
+ * Description: TODO
+ * Version: TODO
+ * Author: YOU
  *
  * @package gutenberg-examples
  */
@@ -55,7 +55,7 @@ function gutenberg_examples_03_esnext_register_block() {
 		filemtime( plugin_dir_path( __FILE__ ) . 'style.css' )
 	);
 
-	register_block_type( 'gutenberg-examples/example-03-editable-esnext', array(
+	register_block_type( 'gutenberg-examples/__pluginNameInternal__', array(
 		'style' => 'gutenberg-examples-03-esnext',
 		'editor_style' => 'gutenberg-examples-03-esnext-editor',
 		'editor_script' => 'gutenberg-examples-03-esnext',
